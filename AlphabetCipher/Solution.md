@@ -5,6 +5,8 @@ Lewis Carroll published a cipher known as
 
 * The substitution chart is fixed so we can have a 26x26 matrix for the lookup.
 * The second step is to create a sort of "padding" function which can append the keyword to itself until it becomes as long as the message. 
+  The first approach was using recursion as hammer, which created a not so elegant function -- it was just recursive.
+  The second approach was slicing and dicing the string based on its size.
 
 ### Encoding
 
