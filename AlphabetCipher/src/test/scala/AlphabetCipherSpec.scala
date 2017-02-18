@@ -2,21 +2,38 @@ import AlphabetCipher._
 import org.scalatest._
 
 class AlphabetCipherSpec extends FlatSpec with Matchers {
-  "offset" should "find the correct character by using row and column" in {
-    assert(offset('b', 'a') == 'b')
-    assert(offset('b', 'b') == 'c')
-    assert(offset('b', 'c') == 'd')
+  "offsetEncoding" should "find the correct character by using row and column" in {
+    assert(offsetEncoding('s', 'm') == 'e')
+    assert(offsetEncoding('c', 'e') == 'g')
+    assert(offsetEncoding('o', 'e') == 's')
+  }
+
+  "offsetDecoding" should "find the correct character by column and offset character" in {
+    assert(offsetDecoding('s', 'e') == 'm')
+    assert(offsetDecoding('s', 't') == 'b')
+    assert(offsetDecoding('e', 'i') == 'e')
+  }
+
+  "offsetDecipher" should "find the correct character by column and offset character" in {
+    assert(offsetDecipher('m', 'e') == 's')
+    assert(offsetDecipher('e', 'g') == 'c')
+    assert(offsetDecipher('e', 's') == 'o')
   }
 
   "padding" should "increase the length of the string to the size provided" in {
-    assert(padding("test", 4) == "test")
-    assert(padding("test", 8) == "testtest")
-    assert(padding("test", 10) == "testtestte")
+    assert(pad("test", 4) == "test")
+    assert(pad("test", 8) == "testtest")
+    assert(pad("test", 10) == "testtestte")
   }
 
   "encode" should "encode given a secret keyword" in {
     assert(encode("vigilance","meetmeontuesdayeveningatseven") == "hmkbxebpxpmyllyrxiiqtoltfgzzv")
     assert(encode("scones","meetmebythetree") == "egsgqwtahuiljgs")
+  }
+
+  "unpad" should "return the single string which we padded before" in {
+    assert(unpad("vigilancevigilancevigil") == "vigilance")
+    assert(unpad("sconessconesscones") == "scones")
   }
 
   "decode" should "decode an cyrpted message given a secret keyword" in {

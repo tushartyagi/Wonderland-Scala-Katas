@@ -11,9 +11,18 @@ Lewis Carroll published a cipher known as
 ### Encoding
 
 * Then we `zip` the padded keyword and message, and lookup the chart for these values using letters from keyword and message as column and rows.
-* Lookup function also needs to be designed by us.
+* Lookup function means that we need to find the character at which the row and column intersect. We can look at it this way: "Translate" the column (like we translate the grids or canvas element in html) back so that the `col` letter becomes the first character, then shift down by `row` and add the two. 
 
 ### Decoding
 
-The opposite of encoding.
+Here we start in the particular column (given by the `key` character) and move right until the `encoded` character is found. Let's call this distance. Adding distance to 'a' will give us the correct letter.
+
+### Deciphering
+
+This is exactly similar to decoding just that we start at a column and move down.
+
+### Unpadding
+
+Unpadding means finding the unique string which we padded before encoding. The solution is to find the occurance of the first letter of the string and split the string around it. This will produce a sequence of strings, now we go through the sequence looking for repetition of the first string; if this is the second element of the sequence, then the first string is complete, otherwise we concatenate all the strings starting from the first one until the one where it is repeated.
+
 
