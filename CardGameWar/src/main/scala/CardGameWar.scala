@@ -23,8 +23,12 @@ object CardGameWar {
     (Deck(d1), Deck(d2))
   }
 
-  def playRound(player1: Card, player2: Card): Card = {
-    ??? // Winning Card
+  def playRound(card1: Card, card2: Card): Card = (card1, card2) match {
+    case (Card(s1, r1), Card(s2, r2)) =>
+      if (ranks.indexOf(r1) > ranks.indexOf(r2)) card1
+      else if (ranks.indexOf(r1) < ranks.indexOf(r2)) card2
+      else if (suits.indexOf(s1) > suits.indexOf(s2)) card1
+      else card2
   }
 
   def playGame(player1: Player, player2: Player): String = {
